@@ -8,7 +8,7 @@ export default function CustomButton() {
   const { open } = useWeb3Modal();
   const { isConnected } = useAccount();
   const { disconnect } = useDisconnect();
-  const label = isConnected ? "Disconnect" : "Connect Custom";
+  const label = isConnected ? "DISCONNECT" : "CONNECT";
 
   async function onOpen() {
     setLoading(true);
@@ -25,15 +25,18 @@ export default function CustomButton() {
   }
 
   return (
-    <Button
+    <Button.Group
       bordered
       color="gradient"
       auto
       shadow
-      onClick={onClick}
-      disabled={loading}
+      ripple="true"
+      animated="true"
     >
-      {loading ? "Loading..." : label}
-    </Button>
+      {isConnected && <Button>One</Button>}
+      <Button onClick={onClick} disabled={loading}>
+        {loading ? "LOADING..." : label}
+      </Button>
+    </Button.Group>
   );
 }
