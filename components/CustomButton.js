@@ -1,12 +1,12 @@
 import { useWeb3Modal } from "@web3modal/react";
 import { useState } from "react";
 import { useAccount, useDisconnect } from "wagmi";
-import { Button } from "@nextui-org/react";
+import { Button, css } from "@nextui-org/react";
 
 export default function CustomButton() {
   const [loading, setLoading] = useState(false);
   const { open } = useWeb3Modal();
-  const { isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const label = isConnected ? "DISCONNECT" : "CONNECT";
 
@@ -25,17 +25,18 @@ export default function CustomButton() {
   }
 
   return (
-    <Button.Group
-      bordered
-      color="gradient"
-      auto
-      shadow
-      ripple="true"
-      animated="true"
-    >
-      {isConnected && <Button>One</Button>}
-      <Button onClick={onClick} disabled={loading}>
-        {loading ? "LOADING..." : label}
+    <Button.Group>
+      {isConnected && <Button>{address}</Button>}
+      <Button
+        onClick={onClick}
+        disabled={loading}
+        css={{ color: "#f4f4f5", background: "#9333ea" }}
+        auto
+        shadow
+        ripple="true"
+        animated="true"
+      >
+        {loading ? "CONNECTING ..." : label}
       </Button>
     </Button.Group>
   );
