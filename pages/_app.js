@@ -44,12 +44,11 @@ const { provider } = configureChains(chains, [
 const wagmiClient = createClient({
   autoConnect: true,
   connectors: new modalConnectors({
-    version: "2",
+    version: "1",
     appName: "web3Modal",
     chains,
     projectId,
   }),
-
   provider,
   explorerAllowList: [
     // rainbow
@@ -63,14 +62,22 @@ const wagmiClient = createClient({
     //OpenSea
     "f759efd17edb158c361ffd793a741b3518fe85b9c15d36b9483fba033118aaf2",
   ],
+  mobileWallets: [
+    {
+      id: "8308656f4548bb81b3508afe355cfbb7f0cb6253d1cc7f998080601f838ecee3",
+      name: "Unstoppable",
+    },
+  ],
   desktopWallets: [
     {
       id: "8308656f4548bb81b3508afe355cfbb7f0cb6253d1cc7f998080601f838ecee3",
       name: "Unstoppable",
-      links: {
-        native: "string",
-        universal: "string",
-      },
+    },
+  ],
+  walletImages: [
+    {
+      rainbow: "/images/rainbow.webp",
+      metaMask: "/images/metamask.webp",
     },
   ],
 });
@@ -97,7 +104,7 @@ export default function App({ Component, pageProps }) {
       <Web3Modal
         projectId={projectId}
         ethereumClient={ethereumClient}
-        themeMode="light"
+        themeMode="dark"
         themeColor="purple"
         themeBackground="gradient | themeColor"
         termsOfServiceUrl="https://example.com/terms-and-conditions"
