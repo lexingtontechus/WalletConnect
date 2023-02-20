@@ -29,12 +29,12 @@ const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 const chains = [
   mainnet,
   polygon,
-  avalanche,
-  arbitrum,
-  bsc,
-  optimism,
-  gnosis,
-  fantom,
+  //avalanche,
+  //arbitrum,
+  //bsc,
+  //optimism,
+  //gnosis,
+  //fantom,
 ];
 
 const { provider } = configureChains(chains, [
@@ -44,7 +44,7 @@ const { provider } = configureChains(chains, [
 const wagmiClient = createClient({
   autoConnect: true,
   connectors: new modalConnectors({
-    version: "1",
+    version: "2",
     appName: "4MoBeers",
     chains,
     projectId,
@@ -62,8 +62,12 @@ const wagmiClient = createClient({
     ],
     walletImages: [
       {
-        rainbow: "/images/rainbow.webp",
-        metaMask: "/images/metamask.webp",
+        rainbow:
+          "https://explorer-api.walletconnect.com/v3/logo/md/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500?projectId=8bc78d25d0d8a616d7d8a3ddad523708",
+        metaMask:
+          "https://explorer-api.walletconnect.com/v3/logo/sm/5195e9db-94d8-4579-6f11-ef553be95100?projectId=8bc78d25d0d8a616d7d8a3ddad523708",
+        unstoppable:
+          "https://explorer-api.walletconnect.com/v3/logo/sm/4725dda0-4471-4d0f-7adf-6bbe8b929c00?projectId=8bc78d25d0d8a616d7d8a3ddad523708",
       },
     ],
     explorerAllowList: [
@@ -73,10 +77,8 @@ const wagmiClient = createClient({
       "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96",
       // Unstoppable Domains
       "8308656f4548bb81b3508afe355cfbb7f0cb6253d1cc7f998080601f838ecee3",
-      //Unstoppable Wallet
+      //Wallet Connect
       "7e90b95230bc462869bbb59f952273d89841e1c76bcc5319898e08c9f34bd4cd",
-      //OpenSea
-      "f759efd17edb158c361ffd793a741b3518fe85b9c15d36b9483fba033118aaf2",
     ],
   }),
   provider,

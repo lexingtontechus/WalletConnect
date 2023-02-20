@@ -26,7 +26,17 @@ export default function CustomButton() {
 
   return (
     <Button.Group>
-      {isConnected && <Button>{address}</Button>}
+      {isConnected && (
+        <Button
+          css={{ color: "#f4f4f5", background: "#9333ea" }}
+          auto
+          shadow
+          ripple="true"
+          animated="true"
+        >
+          PROFILE
+        </Button>
+      )}
       <Button
         onClick={onClick}
         disabled={loading}
